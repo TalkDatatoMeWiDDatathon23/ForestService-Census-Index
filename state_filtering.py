@@ -1,30 +1,48 @@
 import pandas as pd
 import geopandas as gpd
 import pyarrow
+import sys
 
 def open_shapefile_state():
+
+	print('Opening census shapefile dataset')
+
 	gdf = gpd.read_file('tl_2019_us_county/tl_2019_us_county.shp') #file is too large to commit; download from https://catalog.data.gov/dataset/tiger-line-shapefile-2019-nation-u-s-current-county-and-equivalent-national-shapefile
-	
+	print('Shapefile ready')
+
 	#reading FIPS info from https://gist.github.com/dantonnoriega/bf1acd2290e15b91e6710b6fd3be0a53#file-us-state-ansi-fips-csv
+	print('Opening state information dataset')
 	stateFP = pd.read_csv('data/us-state-ansi-fips.csv')
+	stateFP['ST'] = stateFP['ST'].str.replace(' ', '')
+
+
+	print('State information ready!')
+
+	#keep FP and ST only
+	
+	stateFP = stateFP.drop(['STATE_NAME'], axis=1)
 	
 	#reformat FP numbers
+	
 	stateFP.FP = [str(num).zfill(2) for num in stateFP.FP]
-	#keep FP and ST only
-	stateFP = stateFP['FP','ST']
-
+	
+	
+	
 	return gdf,stateFP
 	
 
-def filter_state(gdf, state):
+def filter_state(state):
 	'''
 	Input = state as a string, 
 	abbreviation of a US state input to run the function
 	'''
+	gdf,stateFP = open_shapefile_state()
 	fp_state = stateFP[stateFP['ST'] == state]
+	
+	print(fp_state)
 	gdf_state = gdf[gdf['STATEFP'] == str(fp_state.iloc[0,0])]
 	
-	return state, gdf_state
+	return gdf_state
 	
 
 def main():
@@ -39,17 +57,29 @@ def main():
 									 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY']
 
 		if state_abbreviation in valid_state_abbreviations:
-			state = sys.argv[1]
+			
 			print(f'Processing census shapefile for {state_abbreviation} state.')
 
 			print('Preparing files to process')
 
-			gdf,stateFP = open_shapefile_state()
-			gdf_state = filter_state(state)
+
+			print('Filtering about to beginning')
+
+			state = state_abbreviation
+
+			df = filter_state(state)
 
 			print(f'The census data for {state_abbreviation} is ready to be saved.')
 
-			return state
+			filename_csv = f'census_{state_abbreviation}.csv'
+			df.to_csv(f'data/{filename_csv}', index=False)
+			print('CSV file saved. Now saving the census data to parquet')
+
+			filename_parquet = f'census_{state_abbreviation}.parquet'
+			df.to_parquet(f'data/{filename_parquet}', index=False)
+			print('Parquet file saved!')
+			print('You can now check the data/ folder and proceed to the next steps of the analysis. Enjoy!')
+		
 		else:
 			print(f'{state_abbreviation} is not a valid state abbreviation.')
 
@@ -60,5 +90,4 @@ def main():
 
 if __name__ == "__main__":
 	main()
-
 
