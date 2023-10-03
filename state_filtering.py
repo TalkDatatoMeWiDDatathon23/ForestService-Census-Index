@@ -15,38 +15,46 @@ def open_shapefile_state():
 
 	return gdf,stateFP
 	
-def filter_state(state):
+
+def filter_state(gdf, state):
 	'''
 	Input = state as a string, 
 	abbreviation of a US state input to run the function
 	'''
 	fp_state = stateFP[stateFP['ST'] == state]
-    gdf_state = gdf[gdf['STATEFP'] == str(fp_state.iloc[0,0])]
-    
+	gdf_state = gdf[gdf['STATEFP'] == str(fp_state.iloc[0,0])]
+	
 	return state, gdf_state
-    
+	
 
 def main():
-    if len(sys.argv) == 2:
-        state_abbreviation = sys.argv[1].upper()  # Convert to uppercase for consistency
+	if len(sys.argv) == 2:
+		state_abbreviation = sys.argv[1].upper()  # Convert to uppercase for consistency
 
-        # List of valid state abbreviations
-        valid_state_abbreviations = ['AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA',
-                                     'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD',
-                                     'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ',
-                                     'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC',
-                                     'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY']
+		# List of valid state abbreviations
+		valid_state_abbreviations = ['AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA',
+									 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD',
+									 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ',
+									 'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC',
+									 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY']
 
-        if state_abbreviation in valid_state_abbreviations:
-            state = sys.argv[1]
-			print(f'Processing census shapefile for state: {state_abbreviation}.')
+		if state_abbreviation in valid_state_abbreviations:
+			state = sys.argv[1]
+			print(f'Processing census shapefile for {state_abbreviation} state.')
 
-            return state
-        else:
-            print(f'{state_abbreviation} is not a valid state abbreviation.')
+			print('Preparing files to process')
 
-    else:
-        print('Please provide a single state abbreviation as the argument. Example: python state_filtering.py NY')
+			gdf,stateFP = open_shapefile_state()
+			gdf_state = filter_state(state)
+
+			print(f'The census data for {state_abbreviation} is ready to be saved.')
+
+			return state
+		else:
+			print(f'{state_abbreviation} is not a valid state abbreviation.')
+
+	else:
+		print('Please provide a single state abbreviation as the argument. Example: python state_filtering.py NY')
 
 
 
