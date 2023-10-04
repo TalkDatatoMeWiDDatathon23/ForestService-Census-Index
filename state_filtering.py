@@ -81,7 +81,6 @@ def filter_state(state):
 	gdf,stateFP = open_shapefile_state()
 	fp_state = stateFP[stateFP['ST'] == state]
 	
-	print(fp_state)
 	gdf_state = gdf[gdf['STATEFP'] == str(fp_state.iloc[0,0])]
 	
 	return gdf_state
@@ -109,19 +108,18 @@ def main():
 
 			state = state_abbreviation
 
-			df = filter_state(state)
+			gdf_sub = filter_state(state)
 
 			print(f'The census data for {state_abbreviation} is ready to be saved.')
 
-			filename_csv = f'census_{state_abbreviation}.csv'
-			df.to_csv(f'data/{filename_csv}', index=False)
-			print('CSV file saved. Now saving the census data to parquet')
-
-			filename_parquet = f'census_{state_abbreviation}.parquet'
-			df.to_parquet(f'data/{filename_parquet}', index=False)
-			print('Parquet file saved!')
+			filename_shapefile = f'census_{state_abbreviation}.shp'
+			gdf_sub.to_file(f'data/{filename_shapefile}', index=False)
+			
+			print(f'Census data Shapefile for {state_abbreviation} saved!')
 			print('You can now check the data/ folder and proceed to the next steps of the analysis. Enjoy!')
-		
+			
+			
+
 		else:
 			print(f'{state_abbreviation} is not a valid state abbreviation.')
 
