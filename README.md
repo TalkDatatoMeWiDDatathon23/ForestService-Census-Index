@@ -21,5 +21,5 @@ map of california priority index by county
 ## How to use the repository
 - state_filtering.py
 
-# Data source and acknowledgements
-- Census.org
+# Data source and acknowledgments
+- [US Census dataset](https://catalog.data.gov/dataset/tiger-line-shapefile-2019-nation-u-s-current-county-and-equivalent-national-shapefile)
