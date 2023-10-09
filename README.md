@@ -29,9 +29,12 @@ The county and state codes enabled us to merge the burn severity trends with cou
 ***Priority Index Calculation***
 The Priority Index is a composite index that combines population data and fire counts by county. The purpose of this index is to provide a standardized measure that takes into account both population density and the occurrence of fires in each county, with a weighting of 60% for population and 40% for fire counts. The formula for calculating the Priority Index (PI) is as follows:
 
-`PI = (0.6 * Standardized Population) + (0.4 * Standardized Fire Counts)`
+`PI = (0.6 * Z-Score of Population) + (0.4 * Z-Score of Fire Counts)`
 
+Where:
 
+Z-Score of Population is the z-score of the population of the county, indicating how many standard deviations the population is from the mean population value.
+Z-Score of Fire Counts is the z-score of the number of fire counts in the county, indicating how many standard deviations the fire counts are from the mean fire count value.
 
 A higher priority index score means a county has a combination of high population and more severe fire occurrences. After calculating the priority index values, we visualized them in map form.
 
