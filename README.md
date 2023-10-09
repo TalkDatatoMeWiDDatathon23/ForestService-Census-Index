@@ -29,7 +29,6 @@ The map visually depicts the priority index score for each county in California.
 Run the state_filtering.py script with a state name as input, to pull map and population information for a given state.
 
 # Data source and acknowledgements
-- [Census Shapefile](https://catalog.data.gov/dataset/tiger-line-shapefile-2019-nation-u-s-current-county-and-equivalent-national-shapefile)
-- 2020 Census Population Data, Demographic and Housing Characteristics: Retrieved from https://api.census.gov/data/
--[Monitoring Trends in Burn Severity Fire Occurrence Locations](https://data-usfs.hub.arcgis.com/datasets/usfs::monitoring-trends-in-burn-severity-fire-occurrence-locations-feature-layer/explore?location=35.752773%2C-115.615500%2C4.00&showTable=true): US Forest Service
--[USDA/Forest Service Climate Risk Viewer](https://storymaps.arcgis.com/collections/87744e6b06c74e82916b9b11da218d28?item=1)
+- [Census Shapefile](https://catalog.data.gov/dataset/tiger-line-shapefile-2019-nation-u-s-current-county-and-equivalent-national-shapefile). 2020 Census Population Data, Demographic and Housing Characteristics: Retrieved from https://api.census.gov/data/
+  
+-[Monitoring Trends in Burn Severity Fire Occurrence Locations](https://data-usfs.hub.arcgis.com/datasets/usfs::monitoring-trends-in-burn-severity-fire-occurrence-locations-feature-layer/explore?location=35.752773%2C-115.615500%2C4.00&showTable=true): US Forest Service [USDA/Forest Service Climate Risk Viewer](https://storymaps.arcgis.com/collections/87744e6b06c74e82916b9b11da218d28?item=1)
