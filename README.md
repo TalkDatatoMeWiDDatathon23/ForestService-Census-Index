@@ -41,13 +41,31 @@ A higher priority index score means a county has a combination of high populatio
 
 
 ## Example
-![Image](CA_priority_map.jpg)
+### Plot of the Priority Index with population data for California counties
+![Image](images/PI_population.jpg)
+
+### California map and Priority Index with population data
+![Image](images/CA_priority_map.jpg)
 The map visually depicts the priority index score for each county in California. Counties with a higher index score have a combination of larger population and multiple indicents of severe wildfires, suggesting they are areas where mitigation efforts should be prioritized.
 
 ## How to use the repository
-Run the state_filtering.py script with a state name as input, to pull map and population information for a given state.
+### Libraries used in this project
 
-# Data source and acknowledgements
+### State filtering
+Run the state_filtering.py script with a state name as input to pull map and population information for a given state.
+
+
+### Technical Report
+You can use `census_explore.html` to read through the analysis and map creation.
+
+### Notebook editing
+You can copy the notebook and edit it to explore other layers from the Climate Risk Viewer, although you will have to adapt it to the type of features each layer contains.
+
+
+## In-progress
+We are preparing a Python script that will allow you to create a map of the Priority Index from a state of interest. Stay tuned!
+
+# Data source and acknowledgments
 - [Census Shapefile](https://catalog.data.gov/dataset/tiger-line-shapefile-2019-nation-u-s-current-county-and-equivalent-national-shapefile). 2020 Census Population Data, Demographic and Housing Characteristics: Retrieved from https://api.census.gov/data/
   
 -[Monitoring Trends in Burn Severity Fire Occurrence Locations](https://data-usfs.hub.arcgis.com/datasets/usfs::monitoring-trends-in-burn-severity-fire-occurrence-locations-feature-layer/explore?location=35.752773%2C-115.615500%2C4.00&showTable=true): US Forest Service [USDA/Forest Service Climate Risk Viewer](https://storymaps.arcgis.com/collections/87744e6b06c74e82916b9b11da218d28?item=1)
