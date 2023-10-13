@@ -1,4 +1,5 @@
-# Women in Data 2023 Datathon Project: Prioritizing Forest Management Strategies using US Census Data
+# Women in Data 2023 Datathon Project: 
+# Prioritizing Forest Management Strategies using US Census Data
 # by Michelle Fetherston and Isabelle Vea
 
 You can watch a [summary of the project with captions on Youtube](https://www.youtube.com/watch?v=R1APmv3O_Rg).
