@@ -49,7 +49,8 @@ A higher priority index score means a county has a combination of high populatio
 The map visually depicts the priority index score for each county in California. Counties with a higher index score have a combination of larger population and multiple indicents of severe wildfires, suggesting they are areas where mitigation efforts should be prioritized.
 
 ## How to use the repository
-### Libraries used in this project
+### Libraries 
+Find the Python libraries used in this project in `requirements.txt`
 
 ### State filtering
 Run the state_filtering.py script with a state name as input to pull map and population information for a given state.
